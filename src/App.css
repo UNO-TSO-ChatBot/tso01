@@ -1,0 +1,361 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f5f7fa;
+  color: #333;
+  padding-top: 70px;
+  padding-bottom: 60px;
+}
+
+section {
+  min-height: calc(100vh - 70px - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Header - Navbar */
+header.navbar {
+  background: #004080;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 15px 20px;
+  height: 70px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+header nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Sección Inicio */
+
+.inicio-section {
+  min-height: calc(100vh - 70px - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #e9f0f9;
+  padding: 40px;
+}
+
+.inicio-section h2 {
+  color: #004080;
+  margin-bottom: 15%;
+  margin-top: 15%;
+  font-size: 4rem;
+}
+
+.inicio-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.inicio-buttons button {
+  width: 120px;
+  height: 120px;
+  border-radius: 15px;
+  background: #004080;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.inicio-buttons button:hover {
+  background: #0066cc;
+}
+
+/* Sección Carreras */
+#carreras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  min-width: 320px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.card h2 {
+  color: #004080;
+  font-size: 1.3rem;
+}
+
+.card button,
+.card a {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 15px;
+  background: #004080;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+}
+
+.card button:hover,
+.card a:hover {
+  background: #0066cc;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  text-align: center;
+}
+
+/* Facultad */
+#facultad {
+  background: #e9f0f9;
+  padding: 40px;
+  text-align: center;
+}
+
+#facultad h2 {
+  color: #004080;
+  margin-bottom: 20px;
+}
+
+#facultad ul {
+  list-style: none;
+  padding: 0;
+}
+
+#facultad li {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+/* Contacto */
+.contacto-section {
+  padding: 40px;
+  background: #fff;
+}
+
+.contacto-info h2 {
+  color: #004080;
+  margin-bottom: 20px;
+}
+
+.contacto-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacto-info li {
+  margin: 10px 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contacto-info i {
+  color: #004080;
+  font-size: 1.2rem;
+}
+
+.contacto-form {
+  background: #f5f7fa;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.contacto-form h3 {
+  color: #004080;
+  margin-bottom: 15px;
+}
+
+.contacto-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contacto-form input,
+.contacto-form select,
+.contacto-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contacto-form button {
+  background: #004080;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.contacto-form button:hover {
+  background: #0066cc;
+}
+
+/* Footer */
+footer {
+  background: #004080;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 60px;
+}
+
+footer .row {
+  margin-top: 10px;
+}
+
+footer .col {
+  margin: 5px 0;
+}
+
+/* Chatbot */
+#chatbot-button {
+  position: fixed;
+  bottom: 80px;       /* arriba del footer */
+  right: 20px;
+  width: 60px;        /* ancho fijo */
+  height: 60px;       /* alto fijo */
+  background-color: #004080;
+  border-radius: 50%; /* 👈 lo convierte en círculo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 2000;
+}
+
+#chatbot-button img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+#chatbot-window {
+  position: fixed;
+  bottom: 150px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  z-index: 2000;
+}
+
+.chat-header {
+  background: #004080;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.chat-footer {
+  display: flex;
+  padding: 10px;
+  gap: 5px;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 5px;
+}
+
+.chat-footer button {
+  background: #004080;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.chat-footer button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #004080;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+main {
+  padding-bottom: 80px;
+}
