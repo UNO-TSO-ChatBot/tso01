@@ -42,7 +42,7 @@ export default function Chatbot() {
   return (
     <>
       <div id="chatbot-button" onClick={() => setOpen(!open)}>
-        <img src="src/assets/Robot.png" alt="Chatbot" width="60" />
+        <img src="images/Robot.png" alt="Chatbot" width="60" />
       </div>
 
       {open && (
