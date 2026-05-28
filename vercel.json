@@ -1,0 +1,9 @@
+{
+  "builds": [
+    { "src": "package.json", "use": "@vercel/node" }
+  ],
+  "framework": "vite",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist"
+}
