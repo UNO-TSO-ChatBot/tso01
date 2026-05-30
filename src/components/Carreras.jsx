@@ -1,5 +1,18 @@
-import { useState } from "react";
-
+/**
+ * Carreras.jsx — Grid de tarjetas de carreras con modal de detalle.
+ *
+ * Muestra las 4 carreras en un grid 2×2.
+ * Cada card tiene:
+ *   - Botón "Más información" → abre un modal con descripción larga.
+ *   - Botón "Plan de estudios" → enlace externo al PDF oficial.
+ *
+ * Props:
+ *   - modal   (number | null): índice de la carrera con modal abierto. null = cerrado.
+ *   - setModal (function)    : setter del estado en App.jsx.
+ *
+ * Para agregar o editar carreras, modificar el array `carreras`.
+ * Cada objeto debe tener: { nombre, descripcionCorta, descripcionLarga, linkPlan }.
+ */
 const carreras = [
   {
     nombre: "Licenciatura en Informática",
@@ -41,34 +54,41 @@ const carreras = [
 
 export default function Carreras({ modal, setModal }) {
   return (
-    <section id="carreras" className="row p-4">
-      {carreras.map((c, i) => (
-        <div key={i} className="card col-md-5 m-3 p-3">
+    <section id="carreras">
+      <h2 className="carreras-titulo">Nuestras Carreras</h2>
+      <div className="carreras-grid">
+        {carreras.map((c, i) => (
+          <div key={i} className="card">
           <h2>{c.nombre}</h2>
-          <p>{c.descripcionCorta}</p>
-          <button className="btn btn-primary" onClick={() => setModal(i)}>
-            Más información
-          </button>
-          <a className="btn btn-secondary" href={c.linkPlan} target="_blank">
-            Plan de estudios
-          </a>
+          <p className="card-descripcion">{c.descripcionCorta}</p>
+          <div className="card-actions">
+            <button className="btn-card-primary" onClick={() => setModal(i)}>
+              Más información
+            </button>
+            <a className="btn-card-secondary" href={c.linkPlan} target="_blank" rel="noopener noreferrer">
+              Plan de estudios
+            </a>
+          </div>
 
           {modal === i && (
-            <div className="modal">
+            <div className="modal" role="dialog" aria-modal="true">
               <div className="modal-content p-3">
-                <h5>{c.nombre}</h5>
-                <p>{c.descripcionLarga}</p>
-                <a href={c.linkPlan} target="_blank" className="btn btn-secondary">
-                  Ver plan de estudios
-                </a>
-                <button className="btn btn-dark" onClick={() => setModal(null)}>
-                  Cerrar
-                </button>
+                <h3 className="modal-titulo">{c.nombre}</h3>
+                <p className="modal-texto">{c.descripcionLarga}</p>
+                <div className="modal-actions">
+                  <a href={c.linkPlan} target="_blank" rel="noopener noreferrer" className="btn-card-secondary">
+                    Ver plan de estudios
+                  </a>
+                  <button className="btn-modal-cerrar" onClick={() => setModal(null)}>
+                    Cerrar
+                  </button>
+                </div>
               </div>
             </div>
           )}
         </div>
       ))}
+      </div>
     </section>
   );
 }
