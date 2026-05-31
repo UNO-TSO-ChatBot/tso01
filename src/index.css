@@ -1,12 +1,12 @@
 :root {
   /* Paleta principal: Verde esmeralda, Celeste cielo, Rosa */
-  --color-primary: #0D9488;
-  --color-primary-light: #CCFBF1;
-  --color-primary-hover: #0F766E;
+  --color-primary: #2596be;
+  --color-primary-light: #CCE8F5;
+  --color-primary-hover: #1A77A0;
 
-  --color-secondary: #0369A1;
-  --color-secondary-light: #E0F2FE;
-  --color-secondary-hover: #075985;
+  --color-secondary: #0D9488;
+   --color-primary-light: #CCFBF1;
+  --color-primary-hover: #0F766E;
 
   --color-accent: #BE185D;
   --color-accent-light: #FCE7F3;

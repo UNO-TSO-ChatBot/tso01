@@ -85,4 +85,4 @@ El servidor de desarrollo corre en `http://localhost:5173` por defecto.
 ## Ramas
 
 - `main` — versión estable
-- `feature/refactor` — rama activa de desarrollo con el rediseño visual completo
+- `feature/ejemplo` — rama de desarrollo para actualizaciones
