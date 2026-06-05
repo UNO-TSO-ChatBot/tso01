@@ -17,8 +17,27 @@
  * Accesibilidad:
  *   - El input soporta Enter para enviar.
  *   - El botón de envío se deshabilita mientras carga.
+ * 
+ * API real (error de CORS en desarrollo):
+ * Solucion:
+ * Usar un proxy en desarrollo
+ * Configurar un proxy en tu proyecto
+ * Vite para que las llamadas se hagan desde el mismo dominio:
+ * En vite.config.js:
+ * export default defineConfig({
+ *   server: {
+ *     proxy: {
+ *       "/api": {
+ *        target: "https://ragchat-carreras.onrender.com",
+ *        changeOrigin: true,
+ *        rewrite: (path) => path.replace(/^\/api/, "")
+ *       }
+ *     }
+ *   }
+ *});
  */
 import { useState, useRef, useEffect } from "react";
+import ReactMarkdown from "react-markdown";
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false);
@@ -43,12 +62,20 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://api.adviceslip.com/advice");
+      
+      const res = await fetch("/api/generate-api", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: input, top_k: 5 })
+      });
+      
       const data = await res.json();
+      
       setMessages([
-        ...newMessages,
-        { from: "bot", text: data.slip.advice }
-      ]);
+      ...newMessages,
+      { from: "bot", text: data.output || "No se recibió respuesta." }
+    ]);
+
     } catch (error) {
       console.error("Error al consultar el chatbot:", error);
       setMessages([
@@ -87,7 +114,11 @@ export default function Chatbot() {
             )}
             {messages.map((m, i) => (
               <div key={i} className={`chat-burbuja ${m.from === "user" ? "chat-burbuja--usuario" : "chat-burbuja--bot"}`}>
-                {m.text}
+                {m.from === "bot" ? (
+                  <ReactMarkdown>{m.text}</ReactMarkdown>
+                ) : (
+                  m.text
+                )}
               </div>
             ))}
             {loading && (
