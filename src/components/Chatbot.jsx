@@ -55,12 +55,6 @@ export default function Chatbot() {
     setMessages(newMessages);
     setInput("");
     setLoading(true);
-    /*try {
-      const res = await fetch("/api-chatbot/generate-api", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: valor, top_k: 10 }),
-      });*/
       try {
       const res = await fetch("https://ragchat-carreras.onrender.com/generate-api", {
         method: "POST",
