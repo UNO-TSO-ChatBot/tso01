@@ -88,9 +88,15 @@ export default function Chatbot() {
 
       const data = await res.json();
 
+      const rawOutput = data && data.output ? data.output : "No se recibió respuesta.";
+      const cleanedOutput =
+        typeof rawOutput === "string"
+          ? rawOutput.replace(/^Respuesta generada:\s*/i, "")
+          : rawOutput;
+
       setMessages([
         ...newMessages,
-        { from: "bot", text: data.output || "No se recibió respuesta." },
+        { from: "bot", text: cleanedOutput },
       ]);
     } catch (error) {
       console.error("Error al consultar el chatbot:", error);
