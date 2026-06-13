@@ -10,9 +10,10 @@
  *   - `input`    : string  — texto que el usuario está escribiendo.
  *   - `loading`  : boolean — true mientras se espera la respuesta de la API.
  *
- * API actual (prototipo):
- *   Se usa https://api.adviceslip.com/advice como placeholder.
- *   Reemplazar con la URL del backend real cuando esté disponible.
+ * API:
+ *   POST https://ragchat-carreras.onrender.com/generate-api
+ *   Body: { query: string, top_k: number }
+ *   Response: { query: string, output: string }
  *
  * Accesibilidad:
  *   - El input soporta Enter para enviar.
@@ -37,6 +38,7 @@
  *});
  */
 import { useState, useRef, useEffect } from "react";
+import { procesarInput } from "../utils/chatValidation";
 import ReactMarkdown from "react-markdown";
 
 export default function Chatbot() {
@@ -44,6 +46,7 @@ export default function Chatbot() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [inputError, setInputError] = useState("");
 
   const chatBodyRef = useRef(null);
 
@@ -53,37 +56,47 @@ export default function Chatbot() {
     }
   }, [messages]);
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  useEffect(() => {
+    if (!inputError) return;
+    const timer = setTimeout(() => setInputError(""), 3000);
+    return () => clearTimeout(timer);
+  }, [inputError]);
 
-    const newMessages = [...messages, { from: "user", text: input }];
+  const handleSend = async () => {
+    const { valor, error } = procesarInput(input);
+    if (error) {
+      setInputError(error);
+      return;
+    }
+    setInputError("");
+
+    const newMessages = [...messages, { from: "user", text: valor }];
     setMessages(newMessages);
     setInput("");
     setLoading(true);
 
     try {
-      const API_URL = import.meta.env.DEV 
-        ? "/api/generate-api" 
+      const API_URL = import.meta.env.DEV
+        ? "/api/generate-api"
         : "https://ragchat-carreras.onrender.com/generate-api";
-      
+
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: input, top_k: 5 })
+        body: JSON.stringify({ query: valor, top_k: 5 }),
       });
-      
-      const data = await res.json();
-      
-      setMessages([
-      ...newMessages,
-      { from: "bot", text: data.output || "No se recibió respuesta." }
-    ]);
 
+      const data = await res.json();
+
+      setMessages([
+        ...newMessages,
+        { from: "bot", text: data.output || "No se recibió respuesta." },
+      ]);
     } catch (error) {
       console.error("Error al consultar el chatbot:", error);
       setMessages([
         ...newMessages,
-        { from: "bot", text: "Error al consultar la API." }
+        { from: "bot", text: "Error al consultar la API." },
       ]);
     } finally {
       setLoading(false);
@@ -93,7 +106,11 @@ export default function Chatbot() {
   return (
     <>
       {/* Botón flotante */}
-      <div id="chatbot-button" onClick={() => setOpen(!open)} aria-label="Abrir chatbot">
+      <div
+        id="chatbot-button"
+        onClick={() => setOpen(!open)}
+        aria-label="Abrir chatbot"
+      >
         <img src="images/Robot.png" alt="Chatbot" />
       </div>
 
@@ -105,7 +122,11 @@ export default function Chatbot() {
               <i className="bi bi-robot"></i>
               <span>Asistente UNO</span>
             </div>
-            <button className="chat-close" onClick={() => setOpen(false)} aria-label="Cerrar">
+            <button
+              className="chat-close"
+              onClick={() => setOpen(false)}
+              aria-label="Cerrar"
+            >
               <i className="bi bi-x-lg"></i>
             </button>
           </div>
@@ -116,7 +137,10 @@ export default function Chatbot() {
               <p className="chat-empty">¡Hola! ¿En qué puedo ayudarte?</p>
             )}
             {messages.map((m, i) => (
-              <div key={i} className={`chat-burbuja ${m.from === "user" ? "chat-burbuja--usuario" : "chat-burbuja--bot"}`}>
+              <div
+                key={i}
+                className={`chat-burbuja ${m.from === "user" ? "chat-burbuja--usuario" : "chat-burbuja--bot"}`}
+              >
                 {m.from === "bot" ? (
                   <ReactMarkdown>{m.text}</ReactMarkdown>
                 ) : (
@@ -126,7 +150,9 @@ export default function Chatbot() {
             ))}
             {loading && (
               <div className="chat-burbuja chat-burbuja--bot chat-burbuja--cargando">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
             )}
           </div>
@@ -136,7 +162,10 @@ export default function Chatbot() {
             <input
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
+              onChange={(e) => {
+                setInput(e.target.value);
+                setInputError("");
+              }}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !loading) {
                   e.preventDefault();
@@ -145,11 +174,18 @@ export default function Chatbot() {
               }}
               placeholder="Escribí tu mensaje..."
               disabled={loading}
+              maxLength={500}
             />
             <button onClick={handleSend} disabled={loading} aria-label="Enviar">
               <i className="bi bi-send-fill"></i>
             </button>
           </div>
+        </div>
+      )}
+      {inputError && (
+        <div className="chat-toast" role="alert">
+          <i className="bi bi-exclamation-circle-fill"></i>
+          {inputError}
         </div>
       )}
     </>

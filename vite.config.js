@@ -9,8 +9,8 @@ export default defineConfig({
       "/api": {
         target: "https://ragchat-carreras.onrender.com",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, "")
-      }
-    }
-  }
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 })
