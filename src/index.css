@@ -1,5 +1,5 @@
 :root {
-  /* Paleta principal: Verde esmeralda, Celeste cielo, Rosa */
+  /* Paleta principal: Celeste, Verde, Rosa */
   --color-primary: #2596be;
   --color-primary-light: #CCE8F5;
   --color-primary-hover: #1A77A0;
@@ -937,4 +937,49 @@ footer .col {
 
 main {
   padding-bottom: 80px;
+}
+
+/* Toast de error del chatbot */
+.chat-toast {
+  position: fixed;
+  bottom: 210px;
+  right: 32px;
+  width: 296px;
+  background: #FEE2E2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: var(--text-sm);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  animation: toastIn 0.25s ease;
+  z-index: 2100;
+  box-sizing: border-box;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Chatbot en pantallas con poca altura (ej: celular rotado) */
+@media (max-height: 500px) {
+
+  #chatbot-window {
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .chat-toast {
+    bottom: auto;
+    top: 10px;
+    right: 12px;
+    width: calc(100vw - 24px);
+  }
 }
