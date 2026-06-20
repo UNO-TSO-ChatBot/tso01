@@ -22,7 +22,7 @@ const testimonios = [
   },
   {
     nombre: "Mateo G.",
-    carrera: "Tecnicatura en Desarrollo Web · Egresado 2025",
+    carrera: "Tecnicatura en Desarrollo Web · 3° año",
     texto:
       "«Gracias a la Tecnicatura conseguí mi primer trabajo como frontend developer antes de recibirme. Los proyectos del último año son muy prácticos y te preparan directamente para la industria.»",
     avatar: "MG",
@@ -36,7 +36,7 @@ const testimonios = [
   },
   {
     nombre: "Lucía F.",
-    carrera: "Tecnicatura en Redes Informáticas · Egresada 2024",
+    carrera: "Tecnicatura en Redes Informáticas · 3° año",
     texto:
       "«Cursar Redes me abrió puertas que no imaginaba. Hoy trabajo administrando la infraestructura de una empresa importante y todo lo que aplico lo aprendí en la UNO. No cambiaría la experiencia por nada.»",
     avatar: "LF",

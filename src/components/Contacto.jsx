@@ -14,16 +14,16 @@ export default function Contacto() {
         <h2>¿Tenés dudas? Contactanos</h2>
         <ul>
           <li>
-            <i className="bi bi-geo-alt-fill"></i> Av. San Martín 1234, Merlo, Buenos Aires
+            <i className="bi bi-geo-alt-fill"></i> Sede Córdoba - Córdoba 1055, Merlo, Buenos Aires.
           </li>
           <li>
-            <i className="bi bi-telephone-fill"></i> (011) 4567-8900
+            <i className="bi bi-telephone-fill"></i> (0220) 4834150
           </li>
           <li>
-            <i className="bi bi-envelope-fill"></i> informatica@uno.edu.ar
+            <i className="bi bi-envelope-fill"></i> alumnosct@uno.edu.ar /  escueladecienciastecnologicas@uno.edu.ar
           </li>
           <li>
-            <i className="bi bi-clock-fill"></i> Lunes a Viernes de 9:00 a 20:00 hs
+            <i className="bi bi-clock-fill"></i> Lunes a viernes de 10:00 a 17:00 hs.
           </li>
         </ul>
       </div>

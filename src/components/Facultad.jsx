@@ -24,10 +24,10 @@ export default function Facultad() {
             directos con la industria tecnológica.
           </p>
           <ul className="facultad-lista">
-            <li><i className="bi bi-people-fill"></i> +2000 estudiantes activos</li>
+            <li><i className="bi bi-book-fill"></i> Biblioteca universitaria</li>
             <li><i className="bi bi-mortarboard-fill"></i> 4 carreras disponibles</li>
-            <li><i className="bi bi-briefcase-fill"></i> 98% de empleabilidad</li>
-            <li><i className="bi bi-building-fill"></i> +50 empresas asociadas</li>
+            <li><i className="bi bi-journal-text"></i> Proyectos de investigación</li>
+            <li><i className="bi bi-briefcase-fill"></i> Bolsas de empleo</li>
           </ul>
         </div>
       </div>
