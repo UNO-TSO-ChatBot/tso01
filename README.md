@@ -84,5 +84,5 @@ El servidor de desarrollo corre en `http://localhost:5173` por defecto.
 
 ## Ramas
 
-- `main` — versión estable
+- `main` — versión estable (no modificar, antes crear una rama y Requerir un pull request antes de fusionar)
 - `feature/ejemplo` — rama de desarrollo para actualizaciones
